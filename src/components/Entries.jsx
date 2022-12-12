@@ -8,6 +8,7 @@ const params = ["users", "posts"];
 function Entries() {
   const { users, posts } = useFetchPromiseAll(params);
   const [input, setInput] = useState("");
+  const [openedSubFolders, setOpenedSubFolders] = useState({});
 
   const entries = useMemo(() => {
     return users?.map((user) => {
@@ -48,6 +49,8 @@ function Entries() {
       {filtered?.map((userObj) => {
         return (
           <ProcessUser
+            openedSubFolders={openedSubFolders}
+            setOpenedSubFolders={setOpenedSubFolders}
             key={userObj.id}
             user={userObj}
             depth={0}
